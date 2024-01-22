@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard </title>
+    <link rel="stylesheet" href="../static/CSS/admin_new.css">
+    <link rel="stylesheet" href="../static/CSS/admn_appoint.css">
+    <link rel="stylesheet" href="../static/CSS/admin_patient.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bx-clinic'></i>
+      <!-- <img src="../static/images/steth.jpg" style="width: 25px; height: 25px; position: absolute; left: 10px; top: 25px;">
+       -->
+      <span class="logo_name" style="position: absolute; left: 60px;"><span style="color: red;">M</span>EDICAL</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'admin_dashboard' %}" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Admin Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admn_doctor_view' %}" >
+            <i class='bx bx-git-branch'></i>
+
+            <span class="links_name">Doctor</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_patient_view' %}" >
+            <i class='bx bx-user'></i>
+
+            <span class="links_name">Patient</span>
+          </a>
+        </li>
+
+        <li>
+            <a href="{% url 'admin_appointment' %}" class="active">
+                <i class='bx bx-calendar'></i>
+
+  
+              <span class="links_name">Appointments</span>
+            </a>
+          </li>
+        
+        
+
+        <li >
+          <a href="{% url 'index' %}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Admin Dashboard</span>
+      </div>
+      
+    </nav>
+
+
+    
+
+    <div>
+      <h5 style="position: absolute;top: 90px;"><i class='bx bx-calendar'></i>  Appointment </h5>
+    
+    <table class="table" style="width:100%; line-height: 3; position: absolute;top: 130px;">
+      <tr style="font-family:Georgia, 'Times New Roman', Times, serif; ">
+          <th ></th>
+          <th >Token</th>
+          <th>Patient Name</th>
+          <th>Doctor Name</th>
+          <th>Department</th>
+          <th>Appointment Date</th>
+          <th>Appointment Time</th>
+          <th>Action</th>
+          
+          
+          
+      </tr>
+      <tr>
+          
+          <tr >
+            {% for i in data %}
+
+              <td></td>
+              <td>{{ i.p_token }}</td>
+              <td>{{ i.p_name }}</td>
+              <td>{{ i.doctor_ap }}</td>
+              <td>{{ i.selected_dpt }}</td>
+              <td>{{ i.appointment_date }}</td>
+              <td>{{ i.appointment_time }}</td>
+              
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="patientActions1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-caret-down"></i> 
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="patientActions1">
+                    <a class="dropdown-item" href="{% url 'admn_apnt_edit' i.id %}">Scedule</a>
+                    <a class="dropdown-item" href="{% url 'appointment_delete' i.id %}">Delete</a>
+                  </div>
+                </div>
+              </td>
+            
+              
+          </tr>
+          
+          {% endfor %}
+      </tr>
+  </table>
+</div>
+
+    
+
+    
+        
+
+      
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+   let sidebarBtn = document.querySelector(".sidebarBtn");
+   sidebarBtn.onclick = function() 
+   {
+   sidebar.classList.toggle("active");
+   if(sidebar.classList.contains("active")){
+   sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+   }else
+   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+   }
+ </script>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+
+</body>
+</html>
+          <!-- <div class="row">
+              <div class="col-md-12">
+                  <div class="table-responsive">
+                      <table class="table table-striped custom-table">
+                          <thead>
+                              <tr>
+                                  <th>Appointment ID</th>
+                                  <th>Patient Name</th>
+                                  <th>Age</th>
+                                  <th>Doctor Name</th>
+                                  <th>Department</th>
+                                  <th>Appointment Date</th>
+                                  <th>Appointment Time</th>
+                                  
+                                  <th class="text-right">Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              Sample Appointment Row -->
+                              <!-- <tr>
+                                  <td></td>
+                                  <td><img width="28" height="28" src="" class="rounded-circle m-r-5" alt=""> </td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  
+                                  <td class="text-right">
+                                    <div class="dropdown">
+                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="patientActions1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-caret-down"></i> 
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="patientActions1">
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                      </div>
+                                    </div>
+                                  </td>
+                              </tr> -->
+                              <!-- Add more appointment rows as needed  -->
+                          <!-- </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div> -->
+
+
+
+         

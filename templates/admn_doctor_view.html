@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard </title>
+    <link rel="stylesheet" href="../static/CSS/admin_new.css">
+    <link rel="stylesheet" href="../static/CSS/admn_dr_.css">
+
+    
+    
+    <link rel="stylesheet" href="../static/CSS/admin_patient.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-vAFBwA1NTz1V+0iAaOBp3lY2xyHiQr8Y1GOKOdS5rXam8wWQOJapktzjYIEpI5Mz" crossorigin="anonymous">
+ 
+    
+    
+    
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Gn538YjuvBPSJGGyYwbkzgp9B16NG0B9l7sOAPQvDOK3ZGFLMs20DlZGOt1F9N0z0Q05wCvGbwhtu5VXVG/qQ==" crossorigin="anonymous" />
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bx-clinic'></i>
+      <!-- <img src="../static/images/steth.jpg" style="width: 25px; height: 25px; position: absolute; left: 10px; top: 25px;">
+       -->
+      <span class="logo_name" style="position: absolute; left: 60px;"><span style="color: red;">M</span>EDICAL</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'admin_dashboard' %}" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Admin Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admn_doctor_view' %}" class="active">
+            <i class='bx bx-git-branch'></i>
+
+            <span class="links_name">Doctor</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_patient_view' %}">
+            <i class='bx bx-user'></i>
+
+            <span class="links_name">Patient</span>
+          </a>
+        </li>
+
+        <li>
+            <a href="{% url 'admin_appointment' %}">
+                <i class='bx bx-calendar'></i>
+
+  
+              <span class="links_name">Appointments</span>
+            </a>
+          </li>
+        
+        
+
+        <li >
+          <a href="{% url 'index' %}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Admin Dashboard</span>
+      </div>
+      
+    </nav>
+
+
+    <div class="page-wrapper">
+      <div class="content">
+          <div class="row">
+              
+              <div class="col-sm-8 col-9 text-right m-b-20" style="position: absolute; top: 100px; right: 120px;">
+                  <button id="add_doct"><a href="{% url 'reg_doctor' %}" id="add_d"><i class='bx bx-plus' style="font-size: 15px; font-weight: bolder;"></i>
+                    Add Doctor</a></button>
+              </div>
+          </div>
+          
+
+    <div class="container" style="position: absolute; top: 150px;">
+      <div class="row">
+        {% for i in data %}
+        <div class="col-lg-4">
+
+          
+          <center><img src="/media/{{i.d_image}}" class="card-img-top rounded-circle" style="width: 150px; height: 150px; object-fit: cover;"></center>
+
+          <a href="#" style="text-decoration: none;">{{i.d_name}}</a>
+          <p>{{i.d_special}}</p>
+
+
+          <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="patientActions1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-caret-down"></i> 
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="patientActions1">
+                    <a class="dropdown-item" href="{% url 'doctor_edit' i.id %}">Edit</a>
+                    <a class="dropdown-item" href="{% url 'doc_delete' i.id %}">Delete</a>
+                  </div>
+                </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+        
+
+      
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+
+
+
+ </script>
+ 
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

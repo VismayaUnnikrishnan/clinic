@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard </title>
+    <link rel="stylesheet" href="../static/CSS/admin_new.css">
+    <link rel="stylesheet" href="../static/CSS/admn_appoint.css">
+    <link rel="stylesheet" href="../static/CSS/admin_patient.css">
+
+    
+  <link href="../static/CSS/admn_apoint_edit.css" rel="stylesheet">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bx-clinic'></i>
+      <!-- <img src="../static/images/steth.jpg" style="width: 25px; height: 25px; position: absolute; left: 10px; top: 25px;">
+       -->
+      <span class="logo_name" style="position: absolute; left: 60px;"><span style="color: red;">M</span>EDICAL</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'admin_dashboard' %}" >
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Admin Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admn_doctor_view' %}" >
+            <i class='bx bx-git-branch'></i>
+
+            <span class="links_name">Doctor</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_patient_view' %}" >
+            <i class='bx bx-user'></i>
+
+            <span class="links_name">Patient</span>
+          </a>
+        </li>
+
+        <li>
+            <a href="{% url 'admin_appointment' %}" class="active">
+                <i class='bx bx-calendar'></i>
+
+  
+              <span class="links_name">Appointments</span>
+            </a>
+          </li>
+        
+        
+
+        <li >
+          <a href="{% url 'index' %}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Admin Dashboard</span>
+      </div>
+      
+    </nav>
+
+
+    
+
+    <div>
+      <h5 style="position: absolute;top: 90px;"><i class='bx bx-calendar'></i> Schedule Appointment </h5>
+      <form action="{% url 'appointment_update' Data.id %}" method="post" enctype="multipart/form-data" onsubmit="generateToken()" style="min-height: 300px; left: 200px;">
+        {% csrf_token %}
+
+       
+
+        <label for="text"> Token</label>
+        <input type="text" id="input_token_p" name="p_token" required >
+        
+
+    
+        <label for="text"> Patient Name:</label>
+        <input type="text" id="input_name_p" name="p_names" required value="{{Data.p_name}}">
+        
+
+        <label for="email">Email:</label>
+        <input type="email" id="input_email_p" name="p_email" required value="{{Data.p_email}}">
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="input_mobile_p" name="mobile" required value="{{Data.p_mobile}}">
+
+        <label for="appointmentDate">Appointment Date:</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" required value="{{Data.appointment_date}}">
+
+        <label for="doctor">Doctor:</label>
+        <input type="text" id="input_doctor_p" name="d_name" required value="{{Data.doctor_ap}}">
+
+        <label for="doctor">Select Department:</label>
+        <select id="doctor" name="selected_dpt" required value="{{Data.selected_dpt}}">
+            <option value="Cardiology">Cardiology</option>
+            <option value="Dentist">Dentist</option>
+            <option value="ENT">ENT</option>
+            <option value="Gynacologist">Gynacologist</option>
+            <option value="Neurosurgeon">Neurosurgeon</option>
+            <option value="Nutritianist">Nutritianist</option>
+            <option value="Phisyotherapist">Phisyotherapist</option>
+            <option value="Radiologist">Radiologist</option>
+            <option value="Skin">Skin</option>
+            
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="doctor">Appointment Time:</label>
+        <input type="text" id="input_time_p" name="appointment_time" required value="{{Data.appointment_time}}">
+
+        
+
+        <button type="submit" style="top: 680px;">Approve Appointment</button>
+        <br>
+    </form><br>
+    
+    
+    </div><br>
+
+    
+
+    
+        
+
+      
+  
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+   let sidebarBtn = document.querySelector(".sidebarBtn");
+   sidebarBtn.onclick = function() 
+   {
+   sidebar.classList.toggle("active");
+   if(sidebar.classList.contains("active")){
+   sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+   }else
+   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+   }
+
+
+   function generateToken() {
+    // Extract the CSRF token from the template
+    const csrfToken = document.getElementsByName('p_token')[0].value;
+
+    // Set the CSRF token to the input field
+    document.getElementById('input_token_p').value = csrfToken;
+  }
+
+ </script>
+ 
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+
+</body>
+</html>
+          
+
+
+
+         

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hospital Management System</title>
+    
+    <link rel="stylesheet" href="../static/CSS/styleall.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    
+    <div class="container">
+      <img src="../static/images/steth.jpg" style="width: 40px; height: 40px; position: absolute; left: 50px; top: 13px;">
+      <a href="{% url 'index' %}" id="med"><span style="color: red;">M</span>EDICAL</a>
+      <a href="{% url 'index' %}" id="home">HOME</a>
+      <a href="{% url 'register' %}" id="reg" >REGISTER</a>
+      <a href="{% url 'login_view' %}" id="logg">LOGIN</a>
+      
+    </div>
+
+      <div style="background-image: url(../static/images/home.jpg); background-repeat: no-repeat;background-size: cover; min-height: 700px;">
+      <br><h1 style="margin-top: 200px; margin-left: 560px; color:rgb(32, 11, 90);font-size: 60px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">The Greatest Wealth is Health</h1>
+      <br><h4 style="font-family:cursive; margin-left: 750px; color: blueviolet;">We Will Take Care Of You</h4>
+      </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

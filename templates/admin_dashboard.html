@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard </title>
+    <link rel="stylesheet" href="../static/CSS/admin_new.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bx-clinic'></i>
+      <!-- <img src="../static/images/steth.jpg" style="width: 25px; height: 25px; position: absolute; left: 10px; top: 25px;">
+       -->
+      <span class="logo_name" style="position: absolute; left: 60px;"><span style="color: red;">M</span>EDICAL</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Admin Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admn_doctor_view' %}">
+            <i class='bx bx-git-branch'></i>
+
+            <span class="links_name">Doctor</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_patient_view' %}">
+            <i class='bx bx-user'></i>
+
+            <span class="links_name">Patient</span>
+          </a>
+        </li>
+
+        <li>
+            <a href="{% url 'admin_appointment' %}">
+                <i class='bx bx-calendar'></i>
+
+  
+              <span class="links_name">Appointments</span>
+            </a>
+          </li>
+        
+        
+
+        <li >
+          <a href="{% url 'index' %}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Admin Dashboard</span>
+      </div>
+      
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes" >
+        <div class="box" >
+          <div class="right-side">
+            <div class="box-topic">Total Doctor</div>
+            <img src="../static/images/doctor-icon.jpg" style="height: 50px; ">
+            
+          </div> 
+            
+          <!-- <i class='bx bx-git-branch' ></i> -->
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Patient</div>
+            <img src="../static/images/patient_icon.jpg" style="height: 50px; ">
+            <!-- <div class="number"></div>
+            <!-- <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Up from yesterday</span>
+            </div> -->
+          </div> 
+          <!-- <i class='bx bxs-user' ></i> -->
+        </div>
+        <!--  -->
+
+        <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Appointments</div>
+              <img src="../static/images/appointment-icon.jpg" style="height: 50px; ">
+              <!-- <div class="number"></div>
+              <!-- <div class="indicator">
+                <i class='bx bx-up-arrow-alt'></i>
+                <span class="text">Up from yesterday</span>
+              </div> -->
+            </div> 
+            <!-- <i class='bx bxs-user' ></i> -->
+          </div>
+        
+
+      
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+</body>
+</html>
